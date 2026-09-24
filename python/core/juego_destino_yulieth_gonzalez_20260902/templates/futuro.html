@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Tu Futuro</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+
+<body>
+
+
+    <div class="contenedor">
+
+        <h1>🔮 Tu futuro</h1>
+
+        <h2>Hola, {{ nombre }} 👋</h2>
+
+        <div class="datos">
+
+            <p>
+                <strong>Edad:</strong>
+                {{ edad }}
+            </p>
+
+            <p>
+                <strong>Tu sueño:</strong>
+                {{ sueno }}
+            </p>
+
+        </div>
+
+        <div class="prediccion">
+
+            <h2>✨ Tu predicción</h2>
+
+            <p>
+                {{ prediccion }}
+            </p>
+
+        </div>
+
+        <a href="/">
+            <button>Volver a jugar</button>
+        </a>
+
+    </div>
+
+
+</body>
+
+</html>
