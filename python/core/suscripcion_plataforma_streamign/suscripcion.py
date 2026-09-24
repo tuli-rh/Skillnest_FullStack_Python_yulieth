@@ -1,63 +1,133 @@
 class SuscripcionStreaming:
-    costos = {"Gratis": 0, "Estándar": 5.99, "Premium": 10.99}
+    costos_suscripcion = {
+        "Gratis": 0,
+        "Estándar": 5.99,
+        "Premium": 10.99
+    }
 
     def __init__(self, usuario, tipo_suscripcion="Gratis"):
         self.usuario = usuario
-        self.tipo_suscripcion = tipo_suscripcion
-        self.costo_mensual = self.costos[tipo_suscripcion]
-        self.saldo_pendiente = self.costo_mensual  # Simulamos el primer cobro
+
+        if tipo_suscripcion in self.costos_suscripcion:
+            self.tipo_suscripcion = tipo_suscripcion
+        else:
+            self.tipo_suscripcion = "Gratis"
+
+        self.costo_mensual = self.costos_suscripcion[self.tipo_suscripcion]
+        self.saldo_pendiente = self.costo_mensual
 
     def realizar_pago(self, monto):
-        self.saldo_pendiente -= monto
-        print(f"{self.usuario} pagó ${monto}. Saldo restante: ${self.saldo_pendiente:.2f}")
+        """Reduce el saldo pendiente según el monto pagado."""
+
+        if monto <= 0:
+            print("El monto del pago debe ser mayor que 0.")
+            return
+
+        if monto >= self.saldo_pendiente:
+            self.saldo_pendiente = 0
+            print(f"{self.usuario} ha pagado su saldo pendiente.")
+        else:
+            self.saldo_pendiente -= monto
+            print(f"{self.usuario} realizó un pago de ${monto:.2f}.")
+            print(f"Saldo pendiente: ${self.saldo_pendiente:.2f}")
 
     def cambiar_suscripcion(self, nuevo_tipo):
-        if nuevo_tipo in self.costos:  # Validación de tipos de suscripción
-            self.tipo_suscripcion = nuevo_tipo
-            self.costo_mensual = self.costos[nuevo_tipo]
-            self.saldo_pendiente += self.costo_mensual  # Cobramos el nuevo plan
-            print(f"{self.usuario} cambió a {nuevo_tipo}.")
-        else:
-            print(f"Error: '{nuevo_tipo}' no es un plan válido.")
+        """Cambia el tipo de suscripción y actualiza el costo mensual."""
+
+        if nuevo_tipo not in self.costos_suscripcion:
+            print("Tipo de suscripción no válido.")
+            return
+
+        self.tipo_suscripcion = nuevo_tipo
+        self.costo_mensual = self.costos_suscripcion[nuevo_tipo]
+
+        # Se agrega el nuevo costo al saldo pendiente
+        self.saldo_pendiente += self.costo_mensual
+
+        print(f"{self.usuario} cambió su suscripción a {nuevo_tipo}.")
+        print(f"Nuevo costo mensual: ${self.costo_mensual:.2f}")
 
     def ver_contenido_exclusivo(self):
+        """Permite ver contenido exclusivo según el tipo de suscripción."""
+
         if self.tipo_suscripcion == "Gratis":
-            print(f"{self.usuario}: Sin acceso. El plan Gratis no tiene contenido exclusivo.")
+            print(f"{self.usuario} no tiene acceso al contenido exclusivo.")
         else:
-            print(f"{self.usuario}: Viendo contenido exclusivo.")
+            print(f"{self.usuario} puede acceder al contenido exclusivo.")
 
     def mostrar_info_suscripcion(self):
-        print(f"[{self.usuario}] Plan: {self.tipo_suscripcion} | Deuda total: ${self.saldo_pendiente:.2f}")
+        """Muestra la información de la suscripción del usuario."""
+
+        print("\n--- Información de suscripción ---")
+        print(f"Usuario: {self.usuario}")
+        print(f"Tipo de suscripción: {self.tipo_suscripcion}")
+        print(f"Costo mensual: ${self.costo_mensual:.2f}")
+        print(f"Saldo pendiente: ${self.saldo_pendiente:.2f}")
 
 
 # ==========================================
-# INSTANCIAS 3 USUARIOS
+# PRUEBAS
+# ==========================================
 
-# Crea 3 usuarios con diferentes tipos de suscripción
-u1 = SuscripcionStreaming("Ana", "Gratis")
-u2 = SuscripcionStreaming("Carlos", "Estándar")
-u3 = SuscripcionStreaming("Beatriz", "Premium")
-
-
-print("\n--- Pruebas Usuario 1 (Intenta ver, mejora, paga) ---")
-u1.ver_contenido_exclusivo()
-u1.cambiar_suscripcion("Estándar")
-u1.realizar_pago(5.99)
+# 1. Crear tres usuarios con diferentes suscripciones
+usuario1 = SuscripcionStreaming("Ana", "Gratis")
+usuario2 = SuscripcionStreaming("Carlos", "Estándar")
+usuario3 = SuscripcionStreaming("María", "Premium")
 
 
-print("\n--- Pruebas Usuario 2 (Ve, mejora, paga 2 veces) ---")
-u2.ver_contenido_exclusivo()
-u2.cambiar_suscripcion("Premium")
-u2.realizar_pago(10.00)
-u2.realizar_pago(6.98)
+# ==========================================
+# PRIMER USUARIO
+# ==========================================
+
+print("\n===== USUARIO 1 =====")
+
+usuario1.mostrar_info_suscripcion()
+
+# Intenta ver contenido exclusivo
+usuario1.ver_contenido_exclusivo()
+
+# Mejora su suscripción a Estándar
+usuario1.cambiar_suscripcion("Estándar")
+
+# Paga su saldo
+usuario1.realizar_pago(5.99)
+
+usuario1.mostrar_info_suscripcion()
 
 
-print("\n--- Pruebas Usuario 3 (Paga menos, ve contenido) ---")
-u3.realizar_pago(5.00)
-u3.ver_contenido_exclusivo()
+# ==========================================
+# SEGUNDO USUARIO
+# ==========================================
+
+print("\n===== USUARIO 2 =====")
+
+usuario2.mostrar_info_suscripcion()
+
+# Ve contenido exclusivo
+usuario2.ver_contenido_exclusivo()
+
+# Cambia su suscripción a Premium
+usuario2.cambiar_suscripcion("Premium")
+
+# Paga dos veces
+usuario2.realizar_pago(5.99)
+usuario2.realizar_pago(10.99)
+
+usuario2.mostrar_info_suscripcion()
 
 
-print("\n--- Resumen Final ---")
-u1.mostrar_info_suscripcion()
-u2.mostrar_info_suscripcion()
-u3.mostrar_info_suscripcion()
+# ==========================================
+# TERCER USUARIO
+# ==========================================
+
+print("\n===== USUARIO 3 =====")
+
+usuario3.mostrar_info_suscripcion()
+
+# Intenta pagar menos que su saldo pendiente
+usuario3.realizar_pago(5.00)
+
+# Intenta ver contenido exclusivo
+usuario3.ver_contenido_exclusivo()
+
+usuario3.mostrar_info_suscripcion()
