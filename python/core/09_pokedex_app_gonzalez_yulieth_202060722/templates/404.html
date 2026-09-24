@@ -1,16 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon No Encontrado - 404</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>Pokémon no encontrado</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
+
 <body>
-    <div class="container-error">
-        <h1>404 - ¡Un Pokémon salvaje ha escapado!</h1>
-        <p class="mensaje-error">{{ mensaje }}</p>
-        <a href="/pokemon" class="btn">Volver a la Pokédex</a>
-    </div>
+
+    <main class="error-container">
+
+        <div class="error-card">
+
+            <h1>¡Oh no!</h1>
+
+            <h2>Pokémon no encontrado</h2>
+
+            <p>
+                {{ mensaje }}
+            </p>
+
+            <p>
+                Revisa el nombre o número ingresado e inténtalo nuevamente.
+            </p>
+
+            <a href="/pokemon" class="boton azul">
+                Volver a la Pokédex
+            </a>
+
+        </div>
+
+    </main>
+
 </body>
+
 </html>

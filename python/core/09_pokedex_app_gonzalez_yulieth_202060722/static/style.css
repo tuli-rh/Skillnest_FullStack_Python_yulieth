@@ -2,199 +2,266 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
+
 
 body {
-    background-color: #f7f9fc;
-    color: #2d3748;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
 }
 
-/* Header */
-.main-header {
+
+.contenedor {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+
+header {
     text-align: center;
-    padding: 30px 20px 10px;
+    margin-bottom: 30px;
 }
 
-.main-header h1 {
-    color: #2b6cb0;
-    font-size: 2rem;
-    margin-bottom: 4px;
+
+header h1 {
+    font-size: 40px;
+    color: #2865d8;
+    margin-bottom: 5px;
 }
 
-.subtitle {
-    color: #718096;
-    font-size: 0.95rem;
+
+header p {
+    color: #555;
     margin-bottom: 15px;
 }
 
-.header-buttons {
+
+/* BOTONES */
+
+.botones {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-.btn {
+
+.boton {
+    display: inline-block;
     text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 5px;
     color: white;
+    font-size: 14px;
+    transition: 0.2s;
 }
 
-.btn-blue { background-color: #3182ce; }
-.btn-green { background-color: #38a169; }
 
-/* Grid de Tarjetas */
-.container {
-    max-width: 1050px;
-    margin: 20px auto 50px;
-    padding: 0 20px;
+.boton:hover {
+    transform: translateY(-2px);
 }
+
+
+.azul {
+    background: #1677ff;
+}
+
+
+.verde {
+    background: #159447;
+}
+
+
+.detalle {
+    background: white;
+    color: #1769d1;
+    border: 1px solid #1769d1;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* GRID */
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-.card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
-}
 
-.card-header {
-    background: linear-gradient(180deg, #e2e8f0 0%, #edf2f7 100%);
-    padding: 20px;
-    text-align: center;
+/* TARJETA */
+
+.tarjeta {
     position: relative;
-    height: 150px;
-}
-
-.badge-id {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #cbd5e0;
-    color: #2d3748;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: bold;
-}
-
-.card-header img {
-    height: 110px;
-    object-fit: contain;
-}
-
-.card-body {
-    padding: 15px 20px 20px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
     text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 }
 
-.card-body h2 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-}
 
-/* Chips de Tipos */
-.types-container {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 15px;
-}
+.numero {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 
-.type-badge {
+    background: #555;
     color: white;
-    font-size: 0.7rem;
-    font-weight: bold;
-    padding: 3px 12px;
+
+    padding: 4px 8px;
+
     border-radius: 12px;
-    text-transform: capitalize;
+
+    font-size: 11px;
 }
 
-/* Colores según el Tipo de Pokémon */
-.planta { background-color: #68d391; }
-.veneno { background-color: #b794f4; }
-.fuego { background-color: #ed8936; }
-.agua { background-color: #63b3ed; }
-.eléctrico { background-color: #ecc94b; color: #2d3748; }
-.normal { background-color: #cbd5e0; color: #2d3748; }
-.hada { background-color: #fbb6ce; color: #2d3748; }
-.fantasma { background-color: #805ad5; }
-.roca { background-color: #d69e2e; }
-.tierra { background-color: #dd6b20; }
 
-/* Barra de Poder */
-.power-section {
-    text-align: left;
-    margin-bottom: 15px;
-}
+.imagen-container {
+    height: 170px;
 
-.power-label {
-    font-size: 0.75rem;
-    color: #718096;
-    font-weight: bold;
-    margin-bottom: 4px;
-}
-
-.power-bar-bg {
-    background: #edf2f7;
-    height: 8px;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.power-bar-fill {
-    background: #3182ce;
-    height: 100%;
-}
-
-/* Métricas Altura y Peso */
-.stats-row {
     display: flex;
-    justify-content: space-around;
-    background: #f7fafc;
-    padding: 8px;
-    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef3f8;
+
+    border-radius: 8px;
+
+    margin-bottom: 10px;
+}
+
+
+.imagen-container img {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+
+.tarjeta h2 {
+    margin-bottom: 7px;
+}
+
+
+.tipo {
+    display: inline-block;
+
+    background: #ddd;
+
+    padding: 4px 10px;
+
+    border-radius: 12px;
+
+    font-size: 12px;
+
     margin-bottom: 15px;
 }
 
-.stat-item {
+
+.informacion {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    border-top: 1px solid #ddd;
+
+    border-bottom: 1px solid #ddd;
+
+    padding: 10px 0;
+
+    margin-bottom: 15px;
+}
+
+
+.informacion div {
     display: flex;
     flex-direction: column;
+
+    gap: 4px;
 }
 
-.stat-label {
-    font-size: 0.7rem;
-    color: #a0aec0;
+
+.informacion strong {
+    font-size: 11px;
+    color: #777;
 }
 
-.stat-value {
-    font-size: 0.85rem;
-    font-weight: bold;
+
+.informacion span {
+    font-size: 13px;
 }
 
-/* Botón Ver Detalles */
-.btn-details {
-    display: block;
-    width: 100%;
-    padding: 8px 0;
-    border: 1px solid #3182ce;
-    color: #3182ce;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: background 0.2s;
+
+/* ERROR 404 */
+
+.error-container {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 }
 
-.btn-details:hover {
-    background: #ebf8ff;
+
+.error-card {
+    background: white;
+
+    width: 90%;
+    max-width: 500px;
+
+    text-align: center;
+
+    padding: 40px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+.error-card h1 {
+    color: #e63946;
+
+    font-size: 42px;
+
+    margin-bottom: 10px;
+}
+
+
+.error-card h2 {
+    margin-bottom: 20px;
+}
+
+
+.error-card p {
+    color: #666;
+
+    margin-bottom: 15px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 30px;
+    }
+
 }

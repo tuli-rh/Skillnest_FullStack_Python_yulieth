@@ -1,66 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokédex</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>{{ titulo }}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
+
 <body>
-    <header class="main-header">
-        <h1>Pokédex</h1>
-        <p class="subtitle">Todos los Pokémon</p>
-        <div class="header-buttons">
-            <a href="/pokemon" class="btn btn-blue">≡ Ver todos</a>
-            <a href="/pokemon/cantidad/5" class="btn btn-green">▼ Ver 5 primeros</a>
-        </div>
-    </header>
 
-    <main class="container">
-        <div class="grid">
-            {% for pokemon in pokemones %}
-            <div class="card">
-                <div class="card-header">
-                    <span class="badge-id">#{{ pokemon.id }}</span>
-                    <img src="{{ url_for('static', filename='images/' + pokemon.imagen) }}" alt="{{ pokemon.nombre }}">
-                </div>
-                
-                <div class="card-body">
-                    <h2>{{ pokemon.nombre }}</h2>
-                    
-                    <!-- Chips de tipo dinámicos -->
-                    <div class="types-container">
-                        {% for t in pokemon.tipo.split('/') %}
-                        <span class="type-badge {{ t.lower().strip() }}">{{ t.strip() }}</span>
-                        {% endfor %}
-                    </div>
+    <main class="contenedor">
 
-                    <!-- Barra de poder -->
-                    <div class="power-section">
-                        <div class="power-label">⚡ Poder</div>
-                        <div class="power-bar-bg">
-                            <div class="power-bar-fill" style="width: {{ (pokemon.poder / 160) * 100 }}%;"></div>
-                        </div>
-                    </div>
+        <header>
 
-                    <!-- Métricas -->
-                    <div class="stats-row">
-                        <div class="stat-item">
-                            <span class="stat-label">📏 Altura</span>
-                            <span class="stat-value">{{ pokemon.altura }}</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">⚖️ Peso</span>
-                            <span class="stat-value">{{ pokemon.peso }}</span>
-                        </div>
-                    </div>
+            <h1>🔴 Pokédex</h1>
 
-                    <!-- Botón ver detalles -->
-                    <a href="/pokemon/{{ pokemon.id }}" class="btn-details">Ver detalles</a>
-                </div>
+            <p>Todos los Pokémon</p>
+
+            <div class="botones">
+
+                <a href="/pokemon" class="boton azul">
+                    Ver todos
+                </a>
+
+                <a href="/pokemon/cantidad/3" class="boton verde">
+                    Ver 3 primeros
+                </a>
+
             </div>
+
+        </header>
+
+
+        <section class="grid">
+
+            {% for pokemon in pokemones %}
+
+                <article class="tarjeta">
+
+                    <div class="numero">
+                        #{{ pokemon.id }}
+                    </div>
+
+
+                    <div class="imagen-container">
+
+                        <img
+                            src="{{ url_for('static', filename='images/' + pokemon.imagen) }}"
+                            alt="{{ pokemon.nombre }}"
+                        >
+
+                    </div>
+
+
+                    <h2>
+                        {{ pokemon.nombre }}
+                    </h2>
+
+
+                    <span class="tipo">
+                        {{ pokemon.tipo }}
+                    </span>
+
+
+                    <div class="informacion">
+
+                        <div>
+                            <strong>Poder</strong>
+                            <span>{{ pokemon.poder }}</span>
+                        </div>
+
+                        <div>
+                            <strong>Altura</strong>
+                            <span>{{ pokemon.altura }}</span>
+                        </div>
+
+                        <div>
+                            <strong>Peso</strong>
+                            <span>{{ pokemon.peso }}</span>
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="/pokemon/{{ pokemon.id }}"
+                        class="boton detalle"
+                    >
+                        Ver detalles
+                    </a>
+
+                </article>
+
             {% endfor %}
-        </div>
+
+        </section>
+
     </main>
+
 </body>
+
 </html>
