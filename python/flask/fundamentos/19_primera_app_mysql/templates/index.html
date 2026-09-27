@@ -31,12 +31,16 @@
                     </strong>
 
                     -
-
                     {{ mascota.tipo }}
 
                     -
-
                     {{ mascota.color }}
+
+                    <a
+                        href="{{ url_for('mostrar_mascota', id=mascota.id) }}"
+                    >
+                        Ver detalles
+                    </a>
 
                 </li>
 

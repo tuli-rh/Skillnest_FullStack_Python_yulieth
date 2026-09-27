@@ -10,11 +10,24 @@ def index():
 
     mascotas = Mascota.get_all()
 
-    print(mascotas)
-
     return render_template(
         "index.html",
         mascotas=mascotas
+    )
+
+
+@app.route("/mascota/<int:id>")
+def mostrar_mascota(id):
+
+    mascota = Mascota.get_by_id(id)
+
+    if mascota is None:
+
+        return "Mascota no encontrada", 404
+
+    return render_template(
+        "mascota.html",
+        mascota=mascota
     )
 
 

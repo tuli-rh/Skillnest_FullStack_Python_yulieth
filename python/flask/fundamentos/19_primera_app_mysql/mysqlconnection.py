@@ -21,9 +21,6 @@ class MySQLConnection:
 
             try:
 
-                print("Running Query:")
-                print(query)
-
                 cursor.execute(query, data)
 
                 if query.strip().lower().startswith("select"):
