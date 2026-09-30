@@ -2,11 +2,14 @@ import re
 from flask import flash
 from flask_app.config.mysqlconnection import connectToMySQL
 
+
 EMAIL_REGEX = re.compile(
     r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$'
 )
 
+
 class Usuario:
+
     def __init__(self, data):
         self.id = data["id"]
         self.nombre = data["nombre"]
@@ -18,6 +21,7 @@ class Usuario:
 
     @staticmethod
     def validar_usuario(datos):
+
         es_valido = True
 
         if not datos["nombre"].strip():
@@ -56,22 +60,28 @@ class Usuario:
 
     @classmethod
     def guardar(cls, datos):
+
         query = """
             INSERT INTO usuarios
             (nombre, apellido, email, password)
             VALUES
             (%(nombre)s, %(apellido)s, %(email)s, %(password)s);
         """
+
         return connectToMySQL("esquema_loginreg").query_db(query, datos)
 
     @classmethod
     def buscar_por_email(cls, datos):
+
         query = """
             SELECT *
             FROM usuarios
             WHERE email = %(email)s;
         """
-        resultados = connectToMySQL("esquema_loginreg").query_db(query, datos)
+
+        resultados = connectToMySQL(
+            "esquema_loginreg"
+        ).query_db(query, datos)
 
         if len(resultados) == 1:
             return cls(resultados[0])
@@ -80,12 +90,33 @@ class Usuario:
 
     @classmethod
     def existe_email(cls, datos):
+
         query = """
             SELECT id
             FROM usuarios
             WHERE email = %(email)s;
         """
-        resultados = connectToMySQL("esquema_loginreg").query_db(query, datos)
+
+        resultados = connectToMySQL(
+            "esquema_loginreg"
+        ).query_db(query, datos)
+
         return len(resultados) > 0
-    
-    
+
+    @classmethod
+    def buscar_por_id(cls, datos):
+
+        query = """
+            SELECT *
+            FROM usuarios
+            WHERE id = %(id)s;
+        """
+
+        resultados = connectToMySQL(
+            "esquema_loginreg"
+        ).query_db(query, datos)
+
+        if len(resultados) == 1:
+            return cls(resultados[0])
+
+        return False
