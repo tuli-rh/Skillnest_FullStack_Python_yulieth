@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Página de éxito</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="success-container">
+
+        <h1>
+            ¡Hola {{ user.first_name }}!
+        </h1>
+
+        <p>
+            Has iniciado sesión correctamente.
+        </p>
+
+        <p>
+            Bienvenido, {{ user.first_name }} {{ user.last_name }}.
+        </p>
+
+        <p>
+            Correo: {{ user.email }}
+        </p>
+
+        <a href="/logout">
+            Cerrar Sesión
+        </a>
+
+    </div>
+
+</body>
+
+</html>
