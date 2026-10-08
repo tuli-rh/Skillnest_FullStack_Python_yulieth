@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Usuarios</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <div class="row">
+
+            <div class="col-md-5">
+
+                <h1>Nuevo Usuario</h1>
+
+                <form action="{{ url_for('crear_usuario') }}" method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nombre
+                        </label>
+
+                        <input type="text" name="nombre" class="form-control" required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            E-mail
+                        </label>
+
+                        <input type="email" name="email" class="form-control" required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            PW
+                        </label>
+
+                        <input type="password" name="contrasena" class="form-control" required>
+
+                    </div>
+
+
+                    <button class="btn btn-primary">
+                        Crear
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <div class="col-md-7">
+
+                <h1>Todos los Usuarios</h1>
+
+                {% for usuario in usuarios %}
+
+                <div class="card mb-2">
+
+                    <div class="card-body">
+
+                        {{ usuario.nombre }}<a href="{{ url_for('mostrar_usuario', id=usuario.id) }}">
+                            {{ usuario.nombre }}
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+
+                <a href="{{ url_for('canciones') }}" class="btn btn-success mt-3">
+                    Canciones
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+/* ---------------------------------
+   CONFIGURACIÓN GENERAL
+---------------------------------- */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f2f2f2;
+
+    color: #222;
+}
+
+
+/* ---------------------------------
+   CONTENEDOR PRINCIPAL
+---------------------------------- */
+
+.container {
+    width: 900px;
+    max-width: 95%;
+
+    margin: 60px auto;
+
+    padding: 40px;
+
+    background-color: white;
+
+    display: flex;
+
+    gap: 50px;
+
+    border: 1px solid #ddd;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ---------------------------------
+   CADA FORMULARIO
+---------------------------------- */
+
+.form-section {
+    flex: 1;
+
+    padding: 10px 20px;
+}
+
+
+/* Línea divisoria entre Registro
+   e Inicio de Sesión */
+
+.form-section+.form-section {
+    border-left: 1px solid #ddd;
+}
+
+
+/* ---------------------------------
+   TÍTULOS
+---------------------------------- */
+
+.form-section h1 {
+    margin-top: 0;
+    margin-bottom: 30px;
+
+    text-align: center;
+
+    font-size: 28px;
+
+    color: #333;
+}
+
+
+/* ---------------------------------
+   FORMULARIOS
+---------------------------------- */
+
+form {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* ---------------------------------
+   LABELS
+---------------------------------- */
+
+label {
+    margin-bottom: 6px;
+    margin-top: 15px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    color: #333;
+}
+
+
+/* ---------------------------------
+   INPUTS
+---------------------------------- */
+
+input {
+    width: 100%;
+
+    height: 38px;
+
+    padding: 8px 10px;
+
+    border: 1px solid #aaa;
+
+    border-radius: 3px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+/* Cuando hacemos click en un input */
+
+input:focus {
+    border-color: #333;
+
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ---------------------------------
+   BOTONES
+---------------------------------- */
+
+button {
+    width: 130px;
+
+    margin: 30px auto 0;
+
+    padding: 10px 15px;
+
+    background-color: #222;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 3px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+/* Efecto al pasar el mouse */
+
+button:hover {
+    background-color: #444;
+}
+
+
+/* ---------------------------------
+   MENSAJES DE ERROR
+---------------------------------- */
+
+.errors {
+    margin-bottom: 20px;
+
+    padding: 12px;
+
+    background-color: #ffe1e1;
+
+    border: 1px solid #e00000;
+
+    border-radius: 4px;
+
+    color: #b00000;
+}
+
+.errors p {
+    margin: 5px 0;
+
+    font-size: 14px;
+}
+
+
+/* ---------------------------------
+   PÁGINA DE ÉXITO
+---------------------------------- */
+
+.success-container {
+    width: 650px;
+
+    max-width: 90%;
+
+    margin: 100px auto;
+
+    padding: 50px;
+
+    background-color: white;
+
+    text-align: center;
+
+    border: 1px solid #ddd;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Título de bienvenida */
+
+.success-container h1 {
+    margin-bottom: 20px;
+
+    font-size: 36px;
+
+    color: #222;
+}
+
+
+/* Información del usuario */
+
+.success-container p {
+    font-size: 17px;
+
+    margin: 10px 0;
+}
+
+
+/* ---------------------------------
+   BOTÓN CERRAR SESIÓN
+---------------------------------- */
+
+.success-container a {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 10px 20px;
+
+    background-color: #222;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 3px;
+}
+
+
+.success-container a:hover {
+    background-color: #444;
+}
+
+
+/* ---------------------------------
+   DISEÑO RESPONSIVE
+---------------------------------- */
+
+@media (max-width: 700px) {
+
+    .container {
+        flex-direction: column;
+
+        padding: 25px;
+    }
+
+    .form-section+.form-section {
+        border-left: none;
+
+        border-top: 1px solid #ddd;
+
+        padding-top: 30px;
+    }
+
+    .form-section {
+        padding: 10px;
+    }
+}
