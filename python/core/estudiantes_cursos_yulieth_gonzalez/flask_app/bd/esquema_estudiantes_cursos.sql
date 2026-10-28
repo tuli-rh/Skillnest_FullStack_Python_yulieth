@@ -3,6 +3,10 @@ CREATE DATABASE IF NOT EXISTS esquema_estudiantes_cursos;
 USE esquema_estudiantes_cursos;
 
 
+-- ==========================================================
+-- TABLA CURSOS
+-- ==========================================================
+
 CREATE TABLE IF NOT EXISTS cursos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(45) NOT NULL,
@@ -12,6 +16,9 @@ CREATE TABLE IF NOT EXISTS cursos (
 );
 
 
+-- ==========================================================
+-- TABLA ESTUDIANTES
+-- ==========================================================
 
 CREATE TABLE IF NOT EXISTS estudiantes (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -29,6 +36,9 @@ CREATE TABLE IF NOT EXISTS estudiantes (
 );
 
 
+-- ==========================================================
+-- DATOS DE PRUEBA
+-- ==========================================================
 
 INSERT INTO cursos
 (nombre)
