@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Registro y Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- REGISTRO -->
+        <div class="form-box">
+            <h2>Registro</h2>
+            
+            {% with messages = get_flashed_messages(category_filter=["register"]) %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <p class="error">{{ msg }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="/register" method="POST">
+                <div class="field">
+                    <label for="first_name">Nombre:</label>
+                    <input type="text" name="first_name" id="first_name">
+                </div>
+                <div class="field">
+                    <label for="last_name">Apellido:</label>
+                    <input type="text" name="last_name" id="last_name">
+                </div>
+                <div class="field">
+                    <label for="email">E-mail:</label>
+                    <input type="text" name="email" id="email">
+                </div>
+                <div class="field">
+                    <label for="fecha_nacimiento">F. Nacimiento:</label>
+                    <input type="date" name="fecha_nacimiento" id="fecha_nacimiento">
+                </div>
+                <div class="field">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div class="field">
+                    <label for="confirm_password">Conf. Contraseña:</label>
+                    <input type="password" name="confirm_password" id="confirm_password">
+                </div>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+
+        <!-- INICIO DE SESIÓN -->
+        <div class="form-box">
+            <h2>Inicio de Sesión</h2>
+            
+            {% with messages = get_flashed_messages(category_filter=["login"]) %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <p class="error">{{ msg }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="/login" method="POST">
+                <div class="field">
+                    <label for="login_email">E-mail:</label>
+                    <input type="text" name="email" id="login_email">
+                </div>
+                <div class="field">
+                    <label for="login_password">Contraseña:</label>
+                    <input type="password" name="password" id="login_password">
+                </div>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
