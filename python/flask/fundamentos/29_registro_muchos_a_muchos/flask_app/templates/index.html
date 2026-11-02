@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inscripciones de estudiantes</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="container py-5">
+
+        <header class="text-center mb-5">
+            <h1>Inscripciones de estudiantes</h1>
+
+            <p class="text-muted">
+                Sistema de relación entre estudiantes y cursos
+            </p>
+        </header>
+
+        <!-- Mensajes de Flask -->
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+        {% if mensajes %}
+        {% for categoria, mensaje in mensajes %}
+        <div class="alert alert-{{ categoria }} alert-dismissible fade show">
+            {{ mensaje }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Formulario de inscripción -->
+        <div class="card shadow-sm mb-5">
+
+            <div class="card-body p-4">
+
+                <h2 class="h4 mb-4">Nueva inscripción</h2>
+
+                <form action="{{ url_for('inscribir') }}" method="POST">
+
+                    <div class="mb-3">
+
+                        <label for="estudiante_id" class="form-label">
+                            Selecciona un estudiante
+                        </label>
+
+                        <select name="estudiante_id" id="estudiante_id" class="form-select" required>
+
+                            <option value="">
+                                Selecciona un estudiante
+                            </option>
+
+                            {% for estudiante in estudiantes %}
+                            <option value="{{ estudiante.id_estudiante }}">
+                                {{ estudiante.nombre }} — {{ estudiante.email }}
+                            </option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label for="curso_id" class="form-label">
+                            Selecciona un curso
+                        </label>
+
+                        <select name="curso_id" id="curso_id" class="form-select" required>
+
+                            <option value="">
+                                Selecciona un curso
+                            </option>
+
+                            {% for curso in cursos %}
+                            <option value="{{ curso.id_curso }}">
+                                {{ curso.nombre_curso }}
+                            </option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Inscribir estudiante
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- Tabla de inscripciones -->
+        <section class="card shadow-sm">
+
+            <div class="card-body p-4">
+
+                <h2 class="h4 mb-4">
+                    Inscripciones registradas
+                </h2>
+
+                {% if inscripciones %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-hover align-middle">
+
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Estudiante</th>
+                                <th>Correo</th>
+                                <th>Curso</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for inscripcion in inscripciones %}
+
+                            <tr>
+                                <td>
+                                    {{ inscripcion.estudiante }}
+                                </td>
+
+                                <td>
+                                    {{ inscripcion.email }}
+                                </td>
+
+                                <td>
+                                    {{ inscripcion.nombre_curso }}
+                                </td>
+
+                                <td>
+                                    {{ inscripcion.descripcion }}
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% else %}
+
+                <p class="text-muted mb-0">
+                    Todavía no hay inscripciones registradas.
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
