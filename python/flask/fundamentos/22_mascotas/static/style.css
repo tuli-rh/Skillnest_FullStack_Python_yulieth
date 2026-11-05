@@ -1,0 +1,44 @@
+
+body {
+    background-color: #f3f6fa;
+    font-family: Arial, sans-serif;
+    color: #263445;
+}
+
+h1 {
+    font-weight: bold;
+    color: #23466b;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 18px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.form-control {
+    padding: 11px;
+    border-radius: 8px;
+}
+
+.btn {
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+table {
+    vertical-align: middle;
+}
+
+footer {
+    padding: 15px;
+}
